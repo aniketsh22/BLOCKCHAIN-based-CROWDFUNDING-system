@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Fontawesome CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+
+    <!--WEB3-CONNECT-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
+
+    <!--stylesheet-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!--title-->
+    <title>SAVERS</title>
+</head>
+<body>
+    
+    <!--navbar-->
+        <div class="navbar">
+
+            <div class="mainname">
+               <a href="{% url 'index' %}"> <div class="nav-title">SAVERS</div></a>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="{% url 'aboutus' %}">ABOUT-US</a></li>
+                    <li><a href="{% url 'contact' %}">CONTACT-US</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a style="color:#AAAAAA">Hello, {{user.first_name}}</a></li>
+                    <li><a href="{% url 'connect' %}">GET-STARTED</a></li>
+                    <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+                    {% else %}
+                    <li><a href="{% url 'register' %}">SIGN-IN</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+    
+
+            <div class="container">
+                <div class="content">
+                  <div class="left-side">
+                    <div class="address details">
+                      <i class="fas fa-map-marker-alt"></i>
+                      <div class="topic">Address</div>
+                      <div class="text-one">Mumbai</div>
+                      <div class="text-two">Maharashtra, India</div>
+                    </div>
+                    <div class="phone details">
+                      <i class="fas fa-phone-alt"></i>
+                      <div class="topic">Phone</div>
+                      <div class="text-one">+0011 1111 1111</div>
+                      <div class="text-two">+0096 2222 1111</div>
+                    </div>
+                    <div class="email details">
+                      <i class="fas fa-envelope"></i>
+                      <div class="topic">Email</div>
+                      <div class="text-one">savers@gmail.com</div>
+                      <div class="text-two">kcboys@gmail.com</div>
+                    </div>
+                  </div>
+                  <div class="right-side">
+                    <div class="topic-text">Send us a message</div>
+                    <p>If you have any work from me or any types of quries related to my tutorial, you can send me message from here. It's my pleasure to help you.</p>
+                 
+                    <form action="/get_details" method="post" action="#">
+                    {% csrf_token %}
+                    <div class="input-box">
+                      <input id="name" type="text" class="form-control" placeholder="Enter your name">
+                    </div>
+                    <div class="input-box">
+                      <input id="email" type="text" class="form-control" placeholder="Enter your email">
+                    </div>
+                    <div class="input-box message-box">
+                        <input id="message" type="text" class="form-control" placeholder="Enter your message">
+                    </div>
+                    <div class="button">
+                      <input type="button" onclick="location.href='{% url 'index' %}'" value="Send Now" >
+                    </div>
+                  </form>
+                </div>
+                </div>
+              </div>
+
+   
+
+</body>
+</html>

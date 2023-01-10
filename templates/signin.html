@@ -1,0 +1,348 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!--WEB3-CONNECT-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
+
+    <!--stylesheet-->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <!--title-->
+    <title>SAVERS</title>
+</head>
+<body style="background:url(static/images/male-hand-with-golden-ethereum-blue-background.jpg); background-size:100%">
+    
+    <!--navbar-->
+        <div class="navbar">
+
+            <div class="mainname">
+               <a href="{% url 'index' %}"> <div class="nav-title">SAVERS</div></a>
+            </div>
+
+        <div class="menu">
+            <ul>
+                <li><a href="{% url 'connect' %}">GO-BACK</a></li>
+            </ul>
+        </div>
+        </div>
+
+        <div class="donatebtn">
+            <button class="button-27" onclick="connectMetamask()" role="button">CONNECT TO METAMASK</button>
+            <p id="accountArea"></p>
+        </div>
+
+        <div class="donatebtn">
+           <button class="button-27" onclick="connectContract()" role="button">CONNECT TO SMART CONTRACT</button>
+           <p id="contractArea"></p>
+       </div>
+       
+       <div class="donatebtn">
+          <button class="button-27" onclick="location.href='{% url 'project' %}'" role="button">START DONATING</button>
+          <p id="contractArea"></p>
+      </div>
+    
+    </div>
+
+<!--METAMASK AND SMARTCONTRACT CONNECTION-->
+
+        <script>
+            //1- connect metamask
+            let account;
+            const connectMetamask = async () => {
+                if(window.ethereum !== "undefined") {
+                    const accounts = await ethereum.request({method: "eth_requestAccounts"});
+                    account = accounts[0];
+                    document.getElementById("accountArea").innerHTML = account;
+                }
+            }
+    
+            //2- connect to smart contract
+            const connectContract = async () => {
+                const ABI = [
+                {
+                    "inputs": [
+                        {
+                            "internalType": "string",
+                            "name": "_organisationname",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_purpose",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "_description",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "address payable",
+                            "name": "_recipient",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "_value",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "createRequests",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "_requestNo",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "makePayment",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "refund",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "sendEth",
+                    "outputs": [],
+                    "stateMutability": "payable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "_target",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "_deadline",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "nonpayable",
+                    "type": "constructor"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "_requestNo",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "voteRequest",
+                    "outputs": [],
+                    "stateMutability": "nonpayable",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "contributors",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "deadline",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "getContractBalance",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "manager",
+                    "outputs": [
+                        {
+                            "internalType": "address",
+                            "name": "",
+                            "type": "address"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "minimumContribution",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "noOfContributors",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "numRequests",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "raisedAmount",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "name": "requests",
+                    "outputs": [
+                        {
+                            "internalType": "string",
+                            "name": "organisationname",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "purpose",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "string",
+                            "name": "description",
+                            "type": "string"
+                        },
+                        {
+                            "internalType": "address payable",
+                            "name": "recipient",
+                            "type": "address"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "value",
+                            "type": "uint256"
+                        },
+                        {
+                            "internalType": "bool",
+                            "name": "completed",
+                            "type": "bool"
+                        },
+                        {
+                            "internalType": "uint256",
+                            "name": "noOfVoters",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                },
+                {
+                    "inputs": [],
+                    "name": "target",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                }
+            ];
+
+
+            
+                const Address = "0xd9145CCE52D386f254917e481eB44e9943F39138";
+                window.web3 = await new Web3(window.ethereum);
+                window.contract = await new window.web3.eth.Contract( ABI, Address); 
+                document.getElementById("contractArea").innerHTML = "connected to smart contract";
+            }
+    
+    
+    
+    
+        </script>
+
+</body>
+</html>
+

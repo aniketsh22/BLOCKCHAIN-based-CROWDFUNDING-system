@@ -1,0 +1,97 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #151515;
+}
+
+//indexhtml 
+//navbar
+.navbar{
+    background-color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+.mainname a{
+    text-decoration: none;
+}
+.nav-title{
+    color: white;
+    font-size: xx-large;
+    font-weight: bolder;
+    margin-left: 1cm;
+}
+
+//menu
+.menu ul{
+    display: flex;
+    list-style: none;
+    margin-top: .5cm;
+}
+
+.menu ul a{
+    text-decoration: none;
+    color: white;
+    padding: 3rem;
+}
+
+.menu ul a:hover{
+    color:#357a38;
+}
+
+//maintable
+h1{
+    color: #357a38;
+    text-align: center;
+    margin-top:1cm ;
+    font-weight: 550;
+}
+
+table{
+    margin-top: 1.5cm;
+    color: white;
+}
+
+.donatebtn{
+    margin-top: 5cm;
+    text-align: center;
+}
+.donatebtn a:hover{
+    color: #357a38;
+}
+
+//registerhtml
+
+.name{
+    color: white;
+}
+
+.registermainbox{
+    margin-left: 3cm;
+    margin-top: 2cm;
+
+}
+input[type="text"], textarea {
+
+    background-color : black; 
+    border: none;
+    color: rgba(255, 255, 255, 0.568);
+  }
+
+  .registerbtn{
+    margin-top: .5cm;
+    margin-left: 3cm;
+    margin-bottom: 2cm;
+}
+.registerbtn a:hover{
+    color: #357a38;
+}
+
+
+

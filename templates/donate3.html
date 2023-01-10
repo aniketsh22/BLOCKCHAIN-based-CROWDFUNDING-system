@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="widtd=device-widtd, initial-scale=1.0">
+
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!--WEB3-CONNECT-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.2.7-rc.0/web3.min.js"></script>
+
+    <!--stylesheet-->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!--title-->
+    <title>SAVERS</title>
+</head>
+<body style="background:black">
+    
+    <!--navbar-->
+        <div class="navbar">
+
+            <div class="mainname">
+               <a href="{% url 'index' %}"> <div class="nav-title">SAVERS</div></a>
+            </div>
+
+            <div class="menu">
+                <ul>
+                    <li><a href="{% url 'aboutus' %}">ABOUT-US</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a style="color:#AAAAAA">Hello, {{user.first_name}}</a></li>
+                    <li><a href="{% url 'logout' %}">LOGOUT</a></li>
+                    <li><a href="{% url 'project' %}">GO-BACK</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">LOGIN</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+
+
+        <h1>Donate for Sanitary Napkins Distribution and Awareness Drive for Girls</h1>
+        <div style="color:white; margin-left:2cm; margin-right:2cm; margin-top:1cm; font-size:20px" class="paragraph">
+            <img src="static/images/pads.jpg" style="width:100%;height:100%">
+            <a>Believe it or not, period poverty and lack of awareness of menstrual hygiene are real. Illiteracy, poverty and lack of awareness are the major reasons behind menstruation still being taboo in Indian society. Cultural and social norms in our society create huge barriers to ensuring that adolescent girls are given genuine knowledge of menstrual hygiene. The ones who are aware of it are not open to talking about it. Those who purchase their own sanitary products are all too familiar with their products being wrapped in paper to “shield” the public from any knowledge of the existence of a period.
+
+                <br><br>Even today many girls use unhygienic materials like cloth, grass, newspapers etc which increases the risk of contracting infections. According to Menstrual Hygiene brand Whisper and UNESCO, the global pandemic has forced girls to abandon sanitary napkins for menstrual pads made of cloth, which has raised the spectre of a looming health hazard. Adding to the misery, the lack of menstrual hygiene education in India is also impacting 23 million girls dropping out of school. It is estimated that over 80% of all women in India do not have access to sanitary products during menstruation.
+                
+                <br><br>So our mission is to raise awareness of gender issues and bring it out in the open. Through our programs, we teach young girls that their menstrual cycles are natural, a sign of good reproductive health and are something they have in common with girls in countries worldwide! We also hold sessions with the mothers of the girls to bring the topic of menstruation out into the open, allow them to ask questions and look at menstruation for the natural and healthy process it is.</a>
+        </div>
+
+        <div class="donatehere">
+            <!--<input style="background-color:white; margin-left:13.8cm; margin-top:1cm" placeholder="Enter amount" type="text" id="amount">-->
+            <button onclick="sendTransaction()" style="margin-top:1cm" id="donate" class="button-86" role="button">Donate</button>
+        </div>
+
+      
+        <div class="ifissueoccurs" style="color:rgb(169, 169, 169); margin-left:8cm; margin-top:1cm;margin-bottom:1cm">
+            <bb>If something isn't right, we will work with you to ensure no misuse occurs.
+                CONTACT US</bb>
+        </div>
+
+
+        <!--donation-metamask-->
+        <script>
+
+            async function sendTransaction(){
+              let  params = [
+                {
+                  "from": "0x5a3dbC19531943a5c8013203Fe8c9b0407700489",
+                  "to": "0xCcF967487Df92fAC2C5129d6A5677cA2C10E3332",
+                  "gas": Number(21000).toString(16),
+                  "gasPrice": Number(2500000).toString(16),
+                  "value": Number(1000000000000000000).toString(16),
+                }
+              ]
+              
+               let result = await window.ethereum.request({method: "eth_sendTransaction", params}).catch((err)=>{
+                console.log(err)
+               })
+            }
+
+
+
+        </script>
+          
+   
+
+</body>
+</html>
