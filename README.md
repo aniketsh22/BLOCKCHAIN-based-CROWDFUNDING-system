@@ -101,7 +101,6 @@ https://www.geeksforgeeks.org/how-to-implement-json-rpc-api-eth_sendtransaction-
 If you have any feedback, you can reach out at shrungareaniket05@gmail.com
 
 ## 🔗 Links
-[![gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](shrungareaniket05@gmail.com)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aniket-shrungare/)
 
 
