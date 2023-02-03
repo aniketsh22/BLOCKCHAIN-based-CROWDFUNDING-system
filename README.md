@@ -16,7 +16,7 @@ A blockchain-based crowdfunding system can address these issues by using the tra
 
 In summary, a blockchain-based crowdfunding system aims to solve the issues of security, transparency and high fees that traditional crowdfunding platforms face by using blockchain technology.
 
-## Tech stack
+## Tech stack 
 FRONTEND:
 - HTML
 - CSS
